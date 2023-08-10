@@ -1,0 +1,576 @@
+cover:
+  height_scheme: half # full, half
+  layout_scheme: dock # blank (留白), search (搜索), dock (坞), featured (精选), focus (焦点)
+  display:
+    home: true
+    archive: true
+    others: false # can be written in front-matter 'cover: true'
+  #background: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
+  background: https://gcdnb.pbrd.co/images/Vs8HYqA2HyxO.jpg?o=1
+  # background: https://bing.ioliu.cn/v1/rand?w=1920&h=1200
+  logo: # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-Cover@3x.png
+  title: "Wayne's Notebook"
+  subtitle: "Notebook for ideas and coding."
+  search: 尋找文件 # search bar placeholder
+  features:
+    - name: 歸檔
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f5c3.svg # https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg
+      url: /archives/
+    - name: 分類
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f516.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg
+      url: /categories/
+    - name: 標籤
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f396.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg
+      url: /tags/
+    - name: 清單
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f389.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg
+      url: /mylist/
+    - name: 部落格
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f4f0.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg
+      url: /archives/
+    - name: 原始碼
+      icon: #
+      img: volantis-static/media/twemoji/assets/svg/1f9ec.svg #  https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg
+      url: https://github.com/volantis-x/hexo-theme-volantis/
+
+navbar:
+  visiable: auto # always, auto
+  logo: # choose [img] or [icon + title]
+    img: volantis-static/media/org.volantis/blog/Logo-NavBar@3x.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png
+    icon:
+    title:
+  menu:
+    - name: Home
+      icon: fa-solid fa-rss
+      url: /
+    - name: 分類
+      icon: fa-solid fa-folder-open
+      url: categories/
+    - name: 標籤
+      icon: fa-solid fa-tags
+      url: tags/
+    - name: 歸檔
+      icon: fa-solid fa-archive
+      url: archives/
+    - name: 關於
+      icon: fa-solid fa-info-circle
+      url: about/
+  search: 在文章中尋找 # Search bar placeholder
+
+############################### Article Layout ############################### > start
+# 文章布局
+article:
+  # 文章列表页面的文章卡片布局方案
+  preview:
+    scheme: landscape # landscape
+    # pin icon for post
+    pin_icon: volantis-static/media/twemoji/assets/svg/1f4cc.svg # https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4cc.svg
+    # auto generate title if not exist
+    auto_title: true # false, true
+    # auto generate excerpt if not exist
+    auto_excerpt: true # false, true
+    # hide excerpt
+    hide_excerpt: false
+    # show split line or not
+    line_style: solid # hidden, solid, dashed, dotted
+    # show author
+    author: false # true, false
+    # show readmore button
+    readmore: auto # auto, always
+  # 文章详情页面的文章卡片本体布局方案
+  body:
+    # 文章顶部信息
+    # 从 meta_library 中取
+    top_meta: [author, category, date, counter] #启用评论数量需在此添加
+    # 文章底部信息
+    # 从 meta_library 中取
+    bottom_meta: [updated, tags, share]
+    # ----------------
+    # 文章页脚组件
+    footer_widget:
+      # ----------------
+      # 参考资料、相关资料等 (for layout: post/docs)
+      references:
+        title: 參考資料
+        icon: fa-solid fa-quote-left
+        # 在 front-matter 中:
+        #   references:
+        #     - title: 某篇文章
+        #       url: https://
+        # 即可显示此组件。
+      # ----------------
+      # 文章推荐 (for layout: post/docs)
+      # 推荐算法需要依赖中文分词工具，nodejieba只支持中英文 npm i nodejieba -S
+      recommended_article:
+        enable: false
+        layout: ["post", "docs"]
+        title: 推薦閱讀
+        icon: fa-solid fa-bookmark
+        max_count: 6
+        placeholder_img: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
+        # 不展示文章推荐
+        # front-matter 使用 skip_recommended_article: true 关闭
+        # 不在以下文件夹文章中展示文章推荐 根目录是source/
+        skip_dirs:
+          - wiki/
+      # ----------------
+      # 相关文章，需要安装插件 (for layout: post)
+      # npm i hexo-related-popular-posts
+      related_posts:
+        enable: false
+        title: 相關文章
+        icon: fa-solid fa-bookmark
+        max_count: 5
+        # 设为空则不使用文章头图
+        placeholder_img: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
+      # ----------------
+      # 版权声明组件 (for layout: post)
+      copyright:
+        enable: false
+        permalink: "本文章永久網址為："
+        content:
+          - "文章内容遵循 姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議"
+          - permalink
+          # 自定义版权组件：精细到文章的版权声明
+        custom: false # 开启后替代上方内容的版权显示
+        customData:
+          default: type1 # 默认授权声明
+          #############################
+          # 你可以在文章的 front-matter 覆盖默认版权声明
+          # 配置示例（均可选）：
+          # copyright:
+          #   type: type3           # 当前文章版权声明类型
+          #   author: 张三          # 本文作者
+          #   ref:                  # 原文出处
+          #     title:              # 原文出处 - 标题
+          #     url:                # 原文出处 - 链接
+          #############################
+          rules:
+            type1:
+              text: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh#" target="_blank">CC BY-NC-SA 4.0</a>
+              desc: 姓名標示-非商業性-相同方式分享 4.0 國際。
+            type2:
+              text: 禁止轉載引用
+              desc: 除非獲得作者的單獨授權，任何第三方不得轉載！
+            type3:
+              text: 原作許可協議
+              desc: 文章內容轉載自其他站台，轉載或引用本文章時，請遵守原文許可協議！
+            type4:
+              text: 來自網路
+              desc: 文章內容來自網路，未知文章出處，如有侵權請來信告知。
+            type5:
+              text: 允許規範轉載
+              desc: 轉載文章請保留本文章網址，著作權歸作者所有！
+            type6:
+              text: 允許付費轉載
+              desc: 您可有透過電子信箱與作者聯繫透過付費方式取的文章授權。
+      # ----------------
+      # 打赏组件 (for layout: post)
+      donate:
+        enable: false
+        images:
+          - volantis-static/media/org.volantis/blog/qrcode/github@volantis.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+          - volantis-static/media/org.volantis/blog/qrcode/github@volantis.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+    # meta library
+    meta_library:
+      # 默认文章作者（可在 _data/author.yaml 中增加其他作者，并在 front-matter 中设置）
+      # https://volantis.js.org/advanced-settings/#多人协同
+      author:
+        avatar: volantis-static/media/org.volantis/blog/favicon/apple-touch-icon.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/apple-touch-icon.png
+        name: 請設定文章作者
+        url: /
+      # 文章创建日期
+      date:
+        icon: fa-solid fa-calendar-alt
+        title: "發表於："
+        format: "ll" # 日期格式 http://momentjs.com/docs/
+      # 文章更新日期
+      updated:
+        icon: fa-solid fa-edit
+        title: "更新於："
+        format: "ll" # 日期格式 http://momentjs.com/docs/
+      # 文章分类
+      category:
+        icon: fa-solid fa-folder-open
+      # 文章浏览计数
+      counter:
+        icon: fa-solid fa-eye
+        unit: "次瀏覽"
+      # waline 文章评论数量
+      walinecount:
+        icon: fa-solid fa-comment-dots
+        desc: "則留言" # 条评论
+      # artalk 文章评论数量
+      artalkcount:
+        icon: fa-solid fa-comment-dots
+        desc: "則留言" # 条评论
+      # 文章字数和阅读时长
+      wordcount:
+        icon_wordcount: fa-solid fa-keyboard
+        icon_duration: fa-solid fa-hourglass-half
+      # 文章标签
+      tags:
+        icon: fa-solid fa-hashtag
+      # 分享
+      share:
+        - id: #qq
+          img: # volantis-static/media/org.volantis/logo/128/qq.png #  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png
+        - id: #qzone
+          img: #volantis-static/media/org.volantis/logo/128/qzone.png #  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png
+        - id: #weibo
+          img: #volantis-static/media/org.volantis/logo/128/weibo.png #  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png
+        - id: # qrcode # 当id为qrcode时需要安装插件  npm i hexo-helper-qrcode
+          img: # volantis-static/media/org.volantis/logo/128/wechat.png #  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png
+        - id: # telegram
+          img: # volantis-static/media/org.volantis/logo/128/telegram.png #  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png
+############################### Article Layout ############################### > end
+
+############################### Comments ############################### > start
+comments:
+  title: <i class='fa-solid fa-comment'></i> 留言
+  subtitle:
+  service: giscus
+  # 可选评论系统 #
+
+  # artalk
+  # https://artalk.js.org/
+  # https://github.com/ArtalkJS/Artalk
+  artalk:
+    server: https://yours-artalk-domain # 修改为自建的后端服务地址
+    path: # 全局评论地址
+    placeholder: # 评论占位
+    visitor: true # 是否显示文章阅读数
+    latex: false # 启用 Latex 支持
+    # artalk 有三类图片：1.上传至服务端 2.上传至服务端后利用upgit上传至图床 3.前端上传至图床（本配置为此类）
+    # 配置此项时将覆盖服务端上传能力
+    imageUploader:
+      # 以兰空图床为例，下列填写内容为：
+      # url: 'https://xxxxxx/api/v1/upload'
+      # token: 'Bearer xxxxxxxxxxxxxx'
+      # resp: 'data.links.url'
+      api: # 图床地址
+      token: # 图床验证
+      resp: # 图片地址返回值的字段
+    # 更多置项可在 Artalk 后端进行配置，详见 https://artalk.js.org/guide/backend/fe-control.html
+    # 也可以在此处继续参考上方例子进行配置，不建议重写配置的字段除上方所述外还有：
+    # [el, useBackendConf, pageKey, pageTitle, site, darkMode, pvEl, imgUploader]
+
+  # giscus
+  # https://giscus.app
+  # https://github.com/laymonage/giscus
+  giscus:
+    # 以下配置按照 yml 格式增删填写即可
+    # repo: xxx/xxx
+    # repo-id: xxx
+    # category: xxx
+    # category-id: xxx
+    # mapping: "pathname"
+    # reactions-enabled: "1"
+    # emit-metadata: "0"
+    # lang: "zh-CN"
+    # 以上配置按照 yml 格式增删填写即可
+    theme:
+      light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
+      dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
+
+  # beaudar
+  # https://beaudar.lipk.org/
+  beaudar:
+    repo: xxx/xxx
+    issue-term: pathname
+    issue-number:
+    branch: main
+    position: top
+    order: desc
+    theme:
+      light: github-light
+      dark: github-dark
+    label: ✨💬✨
+
+  # utterances
+  # https://utteranc.es/
+  utterances:
+    repo: xxx/xxx
+    issue-term: pathname
+    issue-number:
+    theme:
+      light: github-light
+      dark: github-dark
+    label: ✨💬✨
+
+  # Disqus
+  # https://disqus.com
+  disqus:
+    shortname:
+    # optional
+    autoload: false
+    path: # 全局评论地址
+
+  # DisqusJS
+  # https://github.com/SukkaW/DisqusJS
+  disqusjs:
+    path: # 全局评论地址
+    # 配置项按照yml格式继续填写即可 除了 [siteName url identifier] 选项
+    #shortname:
+    #api:
+    #apikey:
+    #admin:
+    #nesting:
+
+  # Gitalk
+  # https://gitalk.github.io/
+  gitalk:
+    # 配置项按照yml格式继续填写即可 除了 [id distractionFreeMode] 选项
+    clientID:
+    clientSecret:
+    repo:
+    owner:
+    admin: # []
+    path: # 全局评论地址
+
+  # https://vssue.js.org/zh/
+  vssue:
+    owner:
+    repo:
+    clientId:
+    clientSecret:
+
+  # https://www.livere.com
+  livere:
+    uid:
+
+  # Isso
+  # https://posativ.org/isso/
+  isso:
+    url: https://example.com/(path/)
+    src: https://example.com/(path/)js/embed.min.js
+    css:
+    gravatar:
+
+  # https://www.barkdull.org/software/hashover
+  hashover:
+    src: https://example.com/(path/)comments.php
+
+  # Twikoo
+  # https://twikoo.js.org/
+  twikoo:
+    path: # 全局评论地址
+    # 其他配置项按照yml格式继续填写即可 除了 [el path] 选项
+    envId: xxxxxxxxxxxxxxx # 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+    placeholder: #全局评论占位，也可以在管理面板中的配置管理处设置（此处优先级更高）
+    visitor: true # 是否显示文章阅读数
+
+  # Waline
+  # https://waline.js.org/
+  waline:
+    path: # 全局评论地址 目前设置全局评论地址后visitor失效,这是waline的问题
+    placeholder: # 评论占位提示
+    serverURL: # Waline 的服务端地址（必填） 测试用地址: https://waline.vercel.app
+    imageUploader:
+      # 适配了兰空图床V1、V2版本
+      # 以兰空图床V1为例，下列填写内容为：
+      # fileName: file
+      # tokenName: Authorization
+      # api: https://xxxxxx/api/v1/upload
+      # token: Bearer xxxxxxxxxxxxxx
+      # resp: data.links.url
+      # 以兰空图床V2为例，下列填写内容为：
+      # fileName: image
+      # tokenName: token
+      # api: https://xxxxxx/api/upload
+      # token: xxxxxxxxxxxxxx
+      # resp: data.url
+      fileName: # 根据版本二选一
+      tokenName: # 根据版本二选一
+      api: # 图床 api 地址
+      token: # 图床验证
+      resp: # 图片地址返回值的字段
+    pageview: true # 是否显示文章阅读数
+    comment: true # 是否显示文章评论数
+    # 其他配置项按照yml格式继续填写即可 除了 [el path imageUploader] 选项
+    # 组件属性地址：https://waline.js.org/reference/component.html
+    # meta: ['nick', 'mail', 'link']
+
+  # Discuss
+  # https://discuss.js.org
+  discuss:
+    serverURLs: # Discuss server address url
+    visitStat: true # 是否显示文章阅读数
+    # https://discuss.js.org/Quick-Start.html#path
+############################### Comments ############################### > end
+
+############################### Site Footer ############################### > start
+site_footer:
+  # layout of footer: [aplayer, social, license, info, copyright]
+  layout: [copyright]
+  social:
+    - icon: #fa-solid fa-rss
+      url:
+    # or
+    - img:
+      url:
+    # or
+    - avatar:
+      url:
+  # site source
+  source: https://github.com/volantis-x/volantis-docs/
+  # analytics using busuanzi
+  analytics: >
+    <span>本站总访问量为 <span id='busuanzi_value_site_pv'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 次</span>
+    <span>访客数为 <span id='busuanzi_value_site_uv'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 人</span>
+  # site copyright
+  copyright: "[Copyright © since 2023 Wayne](/)"
+  # You can add your own property here. (Support markdown, for example: br: '<br>')
+  br: "<br>"
+############################### Site Footer ############################### > end
+
+############################### Sidebar ############################### > start
+sidebar:
+  position: right # left right
+  # 主页、分类、归档等独立页面
+  for_page: [blogger, category, tagcloud, donate]
+  # layout: docs/post 这类文章页面
+  for_post: [toc]
+  # 侧边栏组件库
+  widget_library:
+    # ---------------------------------------
+    # blogger info widget
+    blogger:
+      class: blogger
+      display: [desktop, mobile] # [desktop, mobile]
+      # avatar: volantis-static/media/org.volantis/blog/Logo-NavBar@3x.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png
+      avatar: https://gcdnb.pbrd.co/images/yQ8WiLJLwXyN.png?o=1
+      shape: rectangle # circle, rectangle
+      url: /about/
+      title:
+      subtitle:
+      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
+      social:
+        - icon: fa-solid fa-rss
+          url: /atom.xml
+        - icon: fa-solid fa-envelope
+          url: mailto:keoinn@gmail.com
+        - icon: fab fa-github
+          url: https://github.com/keoinn/
+        - icon: fa-solid fa-headphones-alt
+          url: /
+    # ---------------------------------------
+    # toc widget (valid only in articles)
+    toc:
+      class: toc
+      display: [desktop, mobile] # [desktop, mobile]
+      sticky: true
+      header:
+        icon: fa-solid fa-list
+        title: 本文目录
+      list_number: false
+      min_depth: 2
+      max_depth: 5
+    # ---------------------------------------
+    # music
+    music:
+      class: music
+      display: [desktop, mobile] # [desktop, mobile]
+    # ---------------------------------------
+    # category widget
+    category:
+      class: category
+      display: [desktop] # [desktop, mobile]
+      header:
+        icon: fa-solid fa-folder-open
+        title: 文章分类
+        url: /blog/categories/
+    # ---------------------------------------
+    # tagcloud widget
+    tagcloud:
+      class: tagcloud
+      display: [desktop, mobile] # [desktop, mobile]
+      header:
+        icon: fa-solid fa-tags
+        title: 熱門標籤
+        url: /blog/tags/
+      min_font: 14
+      max_font: 24
+      color: true
+      start_color: "#999"
+      end_color: "#555"
+    # ---------------------------------------
+    # qrcode widget
+    qrcode:
+      class: qrcode
+      display: [desktop, mobile] # [desktop, mobile]
+      height: 64px # Automatic height if not set
+      images:
+        - volantis-static/media/org.volantis/blog/qrcode/github@volantis.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+        - volantis-static/media/org.volantis/blog/qrcode/github@volantis.png # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+    # ---------------------------------------
+    # webinfo widget
+    webinfo:
+      class: webinfo
+      display: [desktop]
+      header:
+        icon: fa-solid fa-award
+        title: 站台訊息
+      type:
+        article:
+          enable: true
+          text: "文章數量："
+          unit: "篇"
+        runtime:
+          enable: false
+          data: "2020/01/01" # 填写建站日期
+          text: "已運行時間："
+          unit: "天"
+        wordcount:
+          enable: false
+          text: "站台總字數：" # 需要启用 wordcount
+          unit: "字"
+        visitcounter:
+          enable: true
+          siteuv:
+            text: "站台訪問人次："
+            unit: "人"
+          sitepv:
+            text: "站台總訪問人次："
+            unit: "次"
+        lastupd:
+          enable: true
+          friendlyShow: true # 更友好的时间显示
+          text: "最後更新時間："
+          unit: "日"
+    # ---------------------------------------
+    # lastupdate widget
+    lastupdate:
+      class: lastupdate
+      header:
+        icon: fa-solid fa-clock WISTERIA
+        title: 最近更新
+    # ---------------------------------------
+    # Artalk widget
+    artalk:
+      class: artalk
+      stickys: true
+      display: [desktop, mobile]
+    # ---------------------------------------
+    # Memos widget
+    memos_carousel:
+      class: memos_carousel
+      display: [desktop, mobile]
+      header:
+        icon: fa-solid fa-volume-high
+        title: 說說
+        url: /blog/memos/ # 说说页面的地址
+      url: "https://s.dusays.com/" # 替换城自己的域名，也可以用杜老师的平台托管
+      limit: "10" # 展示数量限制
+      creatorId: "1" # 替换成自己的用户的ID
+      tag: "" # 要展示的内容的标签
+      image: "fa-solid fa-image" # 图片替换成图标
+      link: "fa-solid fa-link" # 链接替换成图标
+      placeholder: "說說家載中..." # 占位符
+
+############################### Sidebar ############################### > end
